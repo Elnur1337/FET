@@ -57,3 +57,24 @@ BEGIN
 END//
 
 SELECT brojNepristup();
+
+
+DELIMITER //
+CREATE PROCEDURE vrijemePrvogPoziva()
+BEGIN
+	IF @timeFirst IS NULL THEN
+		SET @timeFirst = NOW();
+	END IF;
+    SELECT 
+		NOW() AS trenutnoVrijeme,
+        @timeFirst AS vrijemePrvogPoziva;
+END//
+
+CALL vrijemePrvogPoziva();
+
+
+DELIMITER //
+CREATE PROCEDURE najboljih_n(n INTEGER)
+BEGIN
+	
+END//

@@ -12,3 +12,6 @@ SELECT
 FROM diplom
 JOIN stud ON diplom.mbrStud = stud.mbrStud
 WHERE ocjObrane(diplom.mbrStud, datPrijava) > 1;
+
+SELECT AVG(ocjObrane(mbrStud, datPrijava)) FROM diplom
+WHERE ocjObrane(mbrStud, datPrijava) > 1;

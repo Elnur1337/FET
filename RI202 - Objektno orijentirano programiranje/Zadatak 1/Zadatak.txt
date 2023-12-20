@@ -1,0 +1,34 @@
+Program za evidenciju o procitanim knjigama.
+
+Program omogućava korisniku da unese sljedeće
+informacije za svaku pročitanu knjigu:
+1. Naslov knjige (string) Autor knjige(string)
+2. Broj stranica (int)
+3. Ocjena koju je korisnik dao knjizi (int, npr. od 1 do 5)
+
+Pohrana Informacija:
+Sve unesene informacije treba pohraniti u odgovarajuće strukture podataka (npr.
+više vectora, gdje svaki vector predstavlja jednu vrstu podatka).
+Izračunavanje Prosječne Ocjene: Nakon unosa podataka za određeni broj knjiga,
+program treba izračunati i prikazati prosječnu ocjenu svih pročitanih knjiga.
+
+Ispis Podataka:
+Program treba omogućiti ispis liste svih pročitanih knjiga zajedno s njihovim
+detaljima i ocjenama.
+
+Zahtjevi:
+1. Koristiti petlje za unos podataka o više knjiga.
+2. Implementirati if-else if-else lanac za validaciju ocjena (npr. ocjena mora
+biti između 1 i 5).
+3. Omogućiti unos sa ulaza i ispis na ekran. Koristiti string za
+naslove i autore knjiga.
+4. Koristiti primitivne tipove podataka (npr. int) za broj
+stranica i ocjene.
+5. Strukturirati kod koristeći namespace.
+
+Dodatno:
+
+1. Filtrirati i prikazati samo knjige koje imaju ocjenu iznad određene granice
+(npr. sve knjige s ocjenom 4 ili više).
+2. Omogućiti korisniku da pretražuje knjige po
+autoru.

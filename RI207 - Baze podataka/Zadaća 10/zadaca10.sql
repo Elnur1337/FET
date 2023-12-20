@@ -76,5 +76,16 @@ CALL vrijemePrvogPoziva();
 DELIMITER //
 CREATE PROCEDURE najboljih_n(n INTEGER)
 BEGIN
-	
+	SELECT
+		ispit.mbrStud,
+        stud.prezStud,
+        stud.imeStud,
+        AVG(ispit.ocjena) AS prosOc
+	FROM ispit
+    JOIN stud ON ispit.mbrStud = stud.mbrStud
+    GROUP BY ispit.mbrStud
+    ORDER BY 4 DESC, 2, 3
+    LIMIT n;
 END//
+
+CALL najboljih_n(5);

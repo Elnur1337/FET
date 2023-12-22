@@ -1,11 +1,15 @@
 #include <iostream>
 #include <vector>
+#include <string>
 #include "Book.h"
+#include "getValidNumberInput.h"
+#include "inputBooks.h"
 
 using namespace std;
 int main() {
 	vector<Book> v;
-	unsigned short input;
+	short option;
+
 	do {
 		cout << "Menu:\n";
 		cout << "1. Unos knjiga\n";
@@ -13,9 +17,14 @@ int main() {
 		cout << "3. Prikazi knjige koje imaju ocjenu iznad n\n";
 		cout << "4. Pretrazi knjigu po autoru\n";
 		cout << "5. Izlaz\n";
-		cout << "Unesite opciju: ";
-		cin >> input;
-	} while (input != 5);
+		option = getValidNumberInput<short>();
+
+
+		switch (option) {
+		case 1:
+			inputBooks(v);
+		}
+	} while (option != 5);
 	
 	return 0;
 }

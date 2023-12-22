@@ -10,6 +10,8 @@ T getValidNumberInput() {
 	do {
 		cout << "Unos: ";
 		cin >> input;
+		cin.clear();
+		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		try {
 			T option = stoi(input);
 			return option;

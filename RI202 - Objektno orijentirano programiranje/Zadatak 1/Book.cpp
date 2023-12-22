@@ -11,3 +11,12 @@ void Book::setTitle()
 	title = input;
 	return;
 }
+
+void Book::setAuthor()
+{
+	std::string input;
+	cout << "Unesite autora knjige: ";
+	cin >> input;
+	author = input;
+	return;
+}

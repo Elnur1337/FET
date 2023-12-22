@@ -20,3 +20,11 @@ void Book::setAuthor()
 	author = input;
 	return;
 }
+
+void Book::setNumberOfPages() {
+	int input;
+	cout << "Unesite broj stranica: ";
+	cin >> input;
+	numberOfPages = input;
+	return;
+}

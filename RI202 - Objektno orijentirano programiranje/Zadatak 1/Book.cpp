@@ -42,3 +42,11 @@ void Book::setRating() {
 	rating = input;
 	return;
 }
+
+void Book::getBook() {
+	cout << "Naziv: " << title << endl;
+	cout << "Autor: " << author << endl;
+	cout << "Broj stranica: " << numberOfPages << endl;
+	cout << "Ocjena: " << rating << endl << endl;
+	return;
+}

@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void getAvgRating(vector<Book>& v) {
+void getAvgRating(const vector<Book>& v) {
 	int numberOfBooks = v.size();
 	if (numberOfBooks == 0) {
 		cout << "Nema unesenih knjiga!" << endl;

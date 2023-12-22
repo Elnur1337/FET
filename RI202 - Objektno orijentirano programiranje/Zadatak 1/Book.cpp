@@ -54,7 +54,7 @@ void Book::setBook() {
 }
 
 void Book::getBook() const {
-	cout << "Naziv: " << title << endl;
+	cout << "\nNaziv: " << title << endl;
 	cout << "Autor: " << author << endl;
 	cout << "Broj stranica: " << numberOfPages << endl;
 	cout << "Ocjena: " << rating << endl << endl;

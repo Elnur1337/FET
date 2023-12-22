@@ -2,4 +2,4 @@
 #include <vector>
 #include "Book.h"
 
-void getAvgRating(std::vector<Book>&);
+void getAvgRating(const std::vector<Book>&);

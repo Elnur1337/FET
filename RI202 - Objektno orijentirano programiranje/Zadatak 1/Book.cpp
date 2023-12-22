@@ -28,3 +28,17 @@ void Book::setNumberOfPages() {
 	numberOfPages = input;
 	return;
 }
+
+void Book::setRating() {
+	unsigned short input;
+	do {
+		cout << "Unesite ocjenu(1 - 5): ";
+		cin >> input;
+		if (input < 1 || input > 5) {
+			cout << "Ocjena moze biti samo od 1 do 5!\n";
+			cout << "Molimo unesite ocjenu ponovo!\n\n";
+		}
+	} while (input < 1 || input > 5);
+	rating = input;
+	return;
+}

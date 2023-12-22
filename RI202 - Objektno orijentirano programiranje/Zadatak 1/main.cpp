@@ -4,6 +4,7 @@
 #include "Book.h"
 #include "getValidNumberInput.h"
 #include "inputBooks.h"
+#include "getAvgRating.h"
 
 using namespace std;
 int main() {
@@ -23,6 +24,9 @@ int main() {
 		switch (option) {
 		case 1:
 			inputBooks(v);
+			break;
+		case 2:
+			getAvgRating(v);
 		}
 	} while (option != 5);
 	

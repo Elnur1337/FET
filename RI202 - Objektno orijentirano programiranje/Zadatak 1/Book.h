@@ -14,10 +14,12 @@ public:
 	void setNumberOfPages();
 	void setRating();
 
+	void setBook();
+
 	std::string getTitle() const { return title; }
 	std::string getAuthor() const { return author; }
 	int getNumberOfPages() const { return numberOfPages; }
 	unsigned short getRating() const { return rating; }
 
-	void getBook();
+	void getBook() const;
 };

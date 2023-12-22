@@ -43,7 +43,15 @@ void Book::setRating() {
 	return;
 }
 
-void Book::getBook() {
+void Book::setBook() {
+	setTitle();
+	setAuthor();
+	setNumberOfPages();
+	setRating();
+	return;
+}
+
+void Book::getBook() const {
 	cout << "Naziv: " << title << endl;
 	cout << "Autor: " << author << endl;
 	cout << "Broj stranica: " << numberOfPages << endl;

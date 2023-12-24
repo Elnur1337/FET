@@ -6,18 +6,19 @@ private:
 	int y = 0;
 
 public:
-	Complex();
+	Complex() { return; }
 	Complex(int, int);
 
-	int getReal() const;
-	int getImag() const;
+	int getReal() const { return x; }
+	int getImag() const { return y; }
 
-	Complex operator+(const Complex& sec) const;
-	Complex operator-(const Complex& sec) const;
-	Complex operator*(const Complex& sec) const;
-	Complex operator/(const Complex& sec) const;
-	Complex& operator+=(const Complex& sec);
-	Complex& operator-=(const Complex& sec);
-	Complex& operator*=(const Complex& sec);
-	Complex& operator/=(const Complex& sec);
+	Complex operator+(const Complex&) const;
+	Complex operator-(const Complex&) const;
+	Complex operator*(const Complex&) const;
+	Complex operator/(const Complex&) const;
+
+	Complex& operator+=(const Complex&);
+	Complex& operator-=(const Complex&);
+	Complex& operator*=(const Complex&);
+	Complex& operator/=(const Complex&);
 };

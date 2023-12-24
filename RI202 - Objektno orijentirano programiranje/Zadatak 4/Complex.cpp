@@ -56,6 +56,7 @@ Complex& Complex::operator/=(const Complex& sec) {
 		y = im;
 		return *this;
 	}
+	std::cout << "Nije moguce dijeliti sa 0 (nazivnik u formuli za dijeljenje je 0)!\n";
 	return *this;
 }
 

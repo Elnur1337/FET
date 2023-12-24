@@ -23,9 +23,14 @@ Complex Complex::operator/(const Complex& sec) const {
 	return Complex((x * sec.x + y * sec.y) / denominator, (-x * sec.y + y * sec.x) / denominator);
 }
 
-Complex& Complex::operator+=(const Complex& sec)
-{
+Complex& Complex::operator+=(const Complex& sec) {
 	x += sec.x;
 	y += sec.y;
+	return *this;
+}
+
+Complex& Complex::operator-=(const Complex& sec) {
+	x -= sec.x;
+	y -= sec.y;
 	return *this;
 }

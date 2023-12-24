@@ -1,0 +1,2 @@
+Implementiratii klasu Complex, na nacin da svi testovi prodju.
+Klasu definirati u Complex.h, implementacija svih metoda, operatora i konstruktora odraditi u Complex.cpp

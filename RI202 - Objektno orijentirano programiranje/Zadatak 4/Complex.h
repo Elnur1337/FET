@@ -1,16 +1,17 @@
 #pragma once
+#include <iostream>
 
 class Complex {
 private:
-	int x = 0;
-	int y = 0;
+	double x = 0;
+	double y = 0;
 
 public:
 	Complex() { return; }
-	Complex(int, int);
+	Complex(const double&, const double&);
 
-	int getReal() const { return x; }
-	int getImag() const { return y; }
+	double getReal() const { return x; }
+	double getImag() const { return y; }
 
 	Complex operator+(const Complex&) const;
 	Complex operator-(const Complex&) const;
@@ -22,3 +23,5 @@ public:
 	Complex& operator*=(const Complex&);
 	Complex& operator/=(const Complex&);
 };
+
+std::ostream& operator<<(std::ostream&, const Complex&);

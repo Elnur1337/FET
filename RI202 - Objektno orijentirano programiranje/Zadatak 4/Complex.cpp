@@ -10,3 +10,7 @@ Complex::Complex(int real, int imag) {
 	y = imag;
 	return;
 }
+
+int Complex::getReal() const {
+	return x;
+}

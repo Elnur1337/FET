@@ -14,3 +14,7 @@ Complex::Complex(int real, int imag) {
 int Complex::getReal() const {
 	return x;
 }
+
+int Complex::getImag() const {
+	return y;
+}

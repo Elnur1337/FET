@@ -5,3 +5,8 @@ Complex::Complex(int real, int imag) {
 	y = imag;
 	return;
 }
+
+Complex Complex::operator+(const Complex& sec) const
+{
+	return Complex(x + sec.x, y + sec.y);
+}

@@ -10,3 +10,7 @@ Complex Complex::operator+(const Complex& sec) const
 {
 	return Complex(x + sec.x, y + sec.y);
 }
+
+Complex Complex::operator-(const Complex& sec) const {
+	return Complex(x - sec.x, y - sec.y);
+}

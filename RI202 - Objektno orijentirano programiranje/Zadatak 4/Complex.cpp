@@ -6,11 +6,14 @@ Complex::Complex(int real, int imag) {
 	return;
 }
 
-Complex Complex::operator+(const Complex& sec) const
-{
+Complex Complex::operator+(const Complex& sec) const {
 	return Complex(x + sec.x, y + sec.y);
 }
 
 Complex Complex::operator-(const Complex& sec) const {
 	return Complex(x - sec.x, y - sec.y);
+}
+
+Complex Complex::operator*(const Complex& sec) const {
+	return Complex(x * sec.x - y * sec.y, x * sec.y + y * sec.x);
 }

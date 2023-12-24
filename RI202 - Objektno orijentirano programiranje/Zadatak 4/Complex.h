@@ -1,6 +1,5 @@
 #pragma once
 
-
 class Complex {
 private:
 	int x = 0;

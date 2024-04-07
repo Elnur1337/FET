@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <initializer_list>
+#include <iterator>
 
 template <typename T>
 class MojVektor {
@@ -18,6 +19,8 @@ private:
 	}
 
 public:
+	class Iterator;
+
 	MojVektor() : capacity_{ 10 }, size_{ 0 }, arr_{ new T[capacity_] } {};
 
 	MojVektor(size_t len, const T& elem) : capacity_{ len * 2 }, size_{ 0 }, arr_{ new T[capacity_] } {
@@ -133,7 +136,6 @@ public:
 		}
 		return arr_[index];
 	}
-
 	T& operator[](size_t index) const {
 		return *(arr_ + index);
 	}
@@ -232,6 +234,53 @@ public:
 		return false;
 	}
 
+	MojVektor subvector(Iterator begin, Iterator end) {
+		MojVektor returnValue;
+		returnValue.resize(end - begin);
+		std::copy(begin, end, returnValue.arr_);
+		return returnValue;
+	}
+
+	Iterator begin() const {
+		return Iterator(arr_);
+	}
+
+	Iterator end() const {
+		return Iterator(arr_ + size_);
+	}
+
+	Iterator find(const T& element) const {
+		MojVektor::Iterator it = begin();
+		while (it != end()) {
+			if ((*it) == element) {
+				return it;
+			}
+			++it;
+		}
+		return end();
+	}
+
+	Iterator erase(Iterator pos) {
+		if (pos == begin()) {
+			pop_front();
+			return begin();
+		}
+		if (pos == end() - 1) {
+			pop_back();
+			return end();
+		}
+		if (pos == end()) {
+			return pos;
+		}
+		Iterator it = pos;
+		while (it != end()) {
+			*it = *it + 1;
+			++it;
+		}
+		--size_;
+		return pos;
+	}
+
 	void erase(size_t pos) {
 		if (pos >= size_) {
 			throw std::out_of_range("Index out of range!");
@@ -251,6 +300,53 @@ public:
 		return;
 	}
 
+	Iterator insert(Iterator pos, const T& element) {
+		if (pos == begin()) {
+			push_front(element);
+			return begin();
+		}
+		if (pos == end()) {
+			throw std::out_of_range("Iterator to end()!");
+		}
+		if (pos == end() - 1) {
+			push_back(element);
+			return end() - 1;
+		}
+		if (size_ >= capacity_) {
+			realoc();
+		}
+		Iterator it = end();
+		for (; it >= pos; --it) {
+			*(it + 1) = *it;
+		}
+		*(it + 1) = element;
+		++size_;
+		return it + 1;
+	}
+
+	Iterator rbegin() const {
+		return Iterator(arr_ + size_ - 1);
+	}
+
+	Iterator rend() const {
+		return begin() - 1;
+	}
+
+	Iterator erase(Iterator beginIt, Iterator endIt) {
+		size_t beginIndex = beginIt - Iterator(arr_);
+		size_t endIndex = endIt - Iterator(arr_);
+
+		if (beginIndex >= size_ || endIndex > size_ || beginIndex >= endIndex) {
+			throw std::out_of_range("Iterators out of range!");
+		}
+
+		for (size_t i = beginIndex; i < endIndex; ++i) {
+			arr_[i] = std::move(arr_[endIndex - beginIndex + i]);
+		}
+		size_ -= (endIndex - beginIndex);
+		return Iterator(arr_ + beginIndex);
+	}
+
 	void rotate() {
 		T* tempArr = arr_;
 		arr_ = new T[capacity_];
@@ -258,6 +354,22 @@ public:
 			arr_[i] = tempArr[j];
 		}
 		delete[] tempArr;
+		return;
+	}
+
+	void rotate(Iterator beginIt, Iterator endIt) {
+		size_t beginIndex = beginIt - Iterator(arr_);
+		size_t endIndex = endIt - Iterator(arr_) - 1;
+
+		if (beginIndex >= size_ || endIndex > size_ || beginIndex >= endIndex) {
+			throw std::out_of_range("Iterators out of range!");
+		}
+
+		while (beginIndex < endIndex) {
+			std::swap(arr_[beginIndex], arr_[endIndex]);
+			++beginIndex;
+			--endIndex;
+		}
 		return;
 	}
 
@@ -277,3 +389,135 @@ std::ostream& operator<<(std::ostream& outputStream, const MojVektor<T>& contain
 	outputStream << "}";
 	return outputStream;
 }
+
+
+template <typename T>
+class MojVektor<T>::Iterator
+	: public std::iterator<std::random_access_iterator_tag, T> {
+private:
+	T* ptr_;
+
+public:
+	Iterator() :ptr_{ nullptr } {};
+
+	Iterator(const Iterator& it) : ptr_{ it.ptr_ } {};
+
+	Iterator(Iterator&& it) {
+		ptr_ = std::move(it.ptr_);
+		it.ptr_ = nullptr;
+		return;
+	}
+
+	Iterator& operator=(const Iterator& it) {
+		ptr_ = it.ptr_;
+		return *this;
+	}
+
+	Iterator& operator=(Iterator&& it) {
+		ptr_ = std::move(it.ptr_);
+		it.ptr_ = nullptr;
+		return *this;
+	}
+
+	Iterator(T* ptr) {
+		ptr_ = ptr;
+		return;
+	}
+
+	Iterator(T& element) {
+		ptr_ = &element;
+		return;
+	}
+
+	T& operator*() const {
+		return *ptr_;
+	}
+
+	Iterator& operator++() {
+		++ptr_;
+		return *this;
+	}
+
+	Iterator operator++(int) {
+		T* returnValue = ptr_;
+		++ptr_;
+		return returnValue;
+	}
+
+	Iterator& operator--() {
+		--ptr_;
+		return *this;;
+	}
+
+	Iterator operator--(int) {
+		T* returnValue = ptr_;
+		--ptr_;
+		return returnValue;
+	}
+
+	Iterator operator+(size_t index) {
+		return Iterator(ptr_ + index);
+	}
+
+	Iterator operator-(size_t index) {
+		return Iterator(ptr_ - index);
+	}
+
+	T* operator->() const {
+		return ptr_;
+	}
+
+	size_t operator-(const Iterator& second) {
+		return ptr_ - second.ptr_;
+	}
+
+	Iterator operator[](size_t index) const {
+		return Iterator(ptr_ + index);
+	}
+
+	bool operator==(const Iterator& it) const {
+		if (ptr_ == it.ptr_) {
+			return true;
+		}
+		return false;
+	}
+
+	bool operator!=(const Iterator& it) const {
+		return !(this->operator==(it));
+	}
+
+	size_t operator-(const Iterator& rhs) const {
+		return ptr_ - rhs.ptr_;
+	}
+
+	bool operator<(const Iterator& rhs) const {
+		if (ptr_ < rhs.ptr_) {
+			return true;
+		}
+		return false;
+	}
+
+	bool operator>(const Iterator& rhs) const {
+		if (ptr_ > rhs.ptr_) {
+			return true;
+		}
+		return false;
+	}
+
+	bool operator<=(const Iterator& rhs) const {
+		if (ptr_ <= rhs.ptr_) {
+			return true;
+		}
+		return false;
+	}
+
+	bool operator>=(const Iterator& rhs) const {
+		if (ptr_ >= rhs.ptr_) {
+			return true;
+		}
+		return false;
+	}
+
+	~Iterator() = default;
+
+};

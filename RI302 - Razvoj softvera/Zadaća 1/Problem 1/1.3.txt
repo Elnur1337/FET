@@ -1,0 +1,2 @@
+c) kompajler će javiti grešku na (3), jer klasa nema konstruktor koji uzima jedan
+argument tipa int.

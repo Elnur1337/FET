@@ -39,6 +39,7 @@ public:
 	}
 
 	MojVektor& operator=(const MojVektor& second) {
+		delete[] arr_;
 		capacity_ = second.capacity_;
 		size_ = second.size_;
 		arr_ = new T[capacity_];
@@ -54,6 +55,7 @@ public:
 	}
 
 	MojVektor& operator=(MojVektor&& second) {
+		delete[] arr_;
 		capacity_ = std::move(second.capacity_);
 		size_ = std::move(second.size_);
 		arr_ = std::move(second.arr_);

@@ -1,0 +1,1 @@
+Nakon izvršavanje datog segmenta Java koda ispis će biti 13. Razlog tome jeste što prefix operator ++ prvo uveća vrijednost za 1 pa tek onda se to evaluira kao index niza. Isto važi i za prefix operator --.

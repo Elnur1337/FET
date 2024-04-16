@@ -25,6 +25,7 @@ MojVektor::~MojVektor() {
 }
 
 MojVektor& MojVektor::operator=(const MojVektor& second) {
+	delete[] arr_;
 	capacity_ = second.capacity_;
 	size_ = second.size_;
 	arr_ = new int[capacity_];
@@ -33,6 +34,7 @@ MojVektor& MojVektor::operator=(const MojVektor& second) {
 }
 
 MojVektor& MojVektor::operator=(MojVektor&& second) {
+	delete[] arr_;
 	capacity_ = std::move(second.capacity_);
 	size_ = std::move(second.size_);
 	arr_ = std::move(second.arr_);

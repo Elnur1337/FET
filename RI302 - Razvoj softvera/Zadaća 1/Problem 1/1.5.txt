@@ -1,0 +1,1 @@
+a) Ispisuje "9 9 6"

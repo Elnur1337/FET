@@ -1,0 +1,1 @@
+b. Privatnim članovima se može pristupiti iz koda klase kojoj pripadaju.
